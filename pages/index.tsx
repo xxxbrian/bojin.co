@@ -40,7 +40,8 @@ const Home: NextPage = () => {
     <div>
       <Head>
         <title>Bojin Li | 李帛锦</title>
-        <meta name="description" content="Bojin Li" />
+        <meta name="description" content="Bojin Li | 李帛锦" />
+        <meta name="keywords" content="Bojin Li, 李帛锦, Brian, Bojin, xxxbrian, bojinli, UNSW, lipochin, 3xbrian"></meta>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
