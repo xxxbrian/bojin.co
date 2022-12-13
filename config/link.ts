@@ -1,4 +1,4 @@
-import {Github, Props, Telegram, Twitter, Bilibili, Sinaweibo} from '@icons-pack/react-simple-icons'
+import {Github, Props, Telegram, Twitter, Bilibili, Sinaweibo, Discord, Instagram} from '@icons-pack/react-simple-icons'
 import { FC } from 'react'
 
 export interface LinkProps {
@@ -21,7 +21,7 @@ export const socialLinks: LinkProps[] = [
   {
     name: 'Instagram',
     link: 'https://instagram.com/li.pochin',
-    icon: Telegram,
+    icon: Instagram,
     apiUrl: 'https://api.swo.moe/stats/instagram/li.pochin',
     color: '#d7417b',
   },
@@ -54,5 +54,13 @@ export const socialLinks: LinkProps[] = [
     apiUrl: 'https://api.swo.moe/stats/bilibili/50051237',
     color: '#f25d8e',
     followerName: 'subscribers',
+  },
+  {
+    name: 'Discord',
+    link: 'https://discord.gg/QbeKDUwZmd',
+    icon: Discord,
+    apiUrl: 'https://api.swo.moe/stats/discord/QbeKDUwZmd',
+    color: '#7289da',
+    followerName: 'Join server',
   },
 ]
