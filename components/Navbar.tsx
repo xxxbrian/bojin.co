@@ -17,6 +17,10 @@ const navigations = [
   //   name: 'Friends',
   //   link: '/friends',
   // },
+  {
+    name: 'OneDrive',
+    link: 'https://drive.bojin.co',
+  },
 ]
 
 const MenuItemLink = (props: { [x: string]: any; href: any; children: any }) => {
