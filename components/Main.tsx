@@ -44,7 +44,7 @@ const Main = () => {
       </p>
       <p className="flex space-x-2 items-center">
         <Mail size={15} />
-        <a href="mailto:bojin.li@foxmail.com">bojin.li#foxmail.com</a>
+        <a href="mailto:bojinxx@gmail.com">bojinxx#gmail.com</a>
       </p>
     </main>
   )
