@@ -8,10 +8,12 @@ const navigations = [
   {
     name: 'Blog',
     link: '/blog',
+    target: '_self',
   },
   {
     name: 'Links',
     link: '/links',
+    target: '_self',
   },
   // {
   //   name: 'Friends',
@@ -20,6 +22,12 @@ const navigations = [
   {
     name: 'OneDrive',
     link: 'https://drive.bojin.co',
+    target: '_blank',
+  },
+  {
+    name: '#AS198734 Network',
+    link: 'https://bgp.tools/as/198734',
+    target: '_blank',
   },
 ]
 
@@ -41,9 +49,9 @@ const Navbar = () => {
       <div className="flex space-x-4 items-center">
         <nav className="flex space-x-4 items-center hidden sm:block">
           {navigations.map((n, i) => (
-            <Link href={n.link} key={i} passHref>
-              <a>{n.name}</a>
-            </Link>
+            <MenuItemLink href={n.link} target={n.target} key={i}>
+              {n.name}
+            </MenuItemLink>
           ))}
         </nav>
 
@@ -65,7 +73,7 @@ const Navbar = () => {
                 {navigations.map((n, i) => (
                   <div className="p-2" key={i}>
                     <Menu.Item>
-                      <MenuItemLink href={n.link}>{n.name}</MenuItemLink>
+                      <MenuItemLink href={n.link} target={n.target}>{n.name}</MenuItemLink>
                     </Menu.Item>
                   </div>
                 ))}

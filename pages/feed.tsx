@@ -18,7 +18,7 @@ const generateRSS = (posts: any) => {
     favicon: `${domain}/favicon.ico`,
     author: {
       name: 'Bojin Li',
-      email: 'bojin.li@foxmail.com',
+      email: 'bojinxx@gmail.com',
       link: 'https://bojin.co',
     },
   })

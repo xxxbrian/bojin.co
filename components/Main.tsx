@@ -17,13 +17,13 @@ const Main = () => {
       <h1 className="font-bold mb-8 text-2xl heading-text">Bojin Li (Brian)</h1>
 
       <p className="mb-8">
-        Developer / Designer /{' '}
-        <a href="https://unsw.edu.au" target="_blank" rel="noopener noreferrer">
-          <abbr title="🔥 UNSWer" className="!no-underline">
-            #UNSW
+        Developer / Student /{' '}
+        <a href="https://bgp.he.net/AS198734" target="_blank" rel="noopener noreferrer">
+          <abbr title="⚡ BOJIN NETWORK NOC" className="!no-underline">
+            #AS198734
           </abbr>
         </a>{' '}
-        Student
+        Operator
       </p>
 
       <p>
@@ -40,7 +40,7 @@ const Main = () => {
       </p>
 
       <p className="mt-8">
-      Loving python, doing Java, learning typescript.
+      A flunky of strongly-typed languages.
       </p>
       <p className="flex space-x-2 items-center">
         <Mail size={15} />
