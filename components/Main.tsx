@@ -9,8 +9,8 @@ const Main = () => {
           className="rounded-full transition-all duration-100"
           src="/images/avatar.png"
           alt="avatar"
-          width={120}
-          height={120}
+          width={130}
+          height={130}
           priority
         />
       </div>
