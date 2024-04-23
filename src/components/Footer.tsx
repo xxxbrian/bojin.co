@@ -4,8 +4,9 @@ import {
   SiTailwindcss,
   SiVercel,
 } from "@icons-pack/react-simple-icons";
-
-const Footer = () => {
+import { getLastVisitor } from "@/lib/kv";
+const Footer = async () => {
+  const lv = await getLastVisitor();
   return (
     <footer className="text-xs text-center p-6 primary-text">
       <div className="space-x-2 inline-flex items-center my-2">
@@ -16,6 +17,10 @@ const Footer = () => {
       </div>
       <div>Built with love by Bojin Li</div>
       <div>©️ 2019 - {new Date().getFullYear()}</div>
+      <div>
+        Last visitor:{" "}
+        {lv ? `${lv.ip} ${lv.country} ${lv.city} ${lv.flag}` : "Unknown"}
+      </div>
     </footer>
   );
 };

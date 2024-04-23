@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { Rss } from "lucide-react";
 import {
@@ -10,7 +11,6 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
-import { useRouter } from "next/navigation";
 
 const navigations = [
   {
@@ -54,7 +54,6 @@ const MenuItemLink = (props: {
 };
 
 const Navbar = () => {
-  const router = useRouter();
   return (
     <header className="flex p-6 z-10 items-center justify-between primary-text">
       <Link
@@ -97,7 +96,7 @@ const Navbar = () => {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div onClick={() => router.push("/feed")}>
+        <div onClick={() => window.open("/rss", "_self")}>
           <Rss size={20} />
         </div>
       </div>
