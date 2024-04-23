@@ -1,6 +1,7 @@
 import { MailIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import Identity from "./Identity";
 
 const Main = () => {
   return (
@@ -17,20 +18,9 @@ const Main = () => {
       </div>
       <h1 className="font-bold mb-8 text-2xl heading-text">Bojin Li (Brian)</h1>
 
-      <p className="mb-8 leading-7">
-        Developer / Student /{" "}
-        <Link
-          href="https://bgp.he.net/AS198734"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="border-b border-b-white"
-        >
-          <abbr title="⚡ BOJIN NETWORK NOC" className="!no-underline">
-            AS198734
-          </abbr>
-        </Link>{" "}
-        Operator
-      </p>
+      <div className="mb-8">
+        <Identity />
+      </div>
 
       <p className="leading-7">
         Currently studying in{" "}
