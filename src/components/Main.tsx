@@ -1,5 +1,6 @@
 import { MailIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Main = () => {
   return (
@@ -18,23 +19,29 @@ const Main = () => {
 
       <p className="mb-8 leading-7">
         Developer / Student /{" "}
-        <a
+        <Link
           href="https://bgp.he.net/AS198734"
           target="_blank"
           rel="noopener noreferrer"
+          className="border-b border-b-white"
         >
           <abbr title="⚡ BOJIN NETWORK NOC" className="!no-underline">
-            #AS198734
+            AS198734
           </abbr>
-        </a>{" "}
+        </Link>{" "}
         Operator
       </p>
 
       <p className="leading-7">
         Currently studying in{" "}
-        <a href="https://unsw.edu.au" target="_blank" rel="noopener noreferrer">
+        <Link
+          href="https://unsw.edu.au"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="border-b border-b-white"
+        >
           University of New South Wales
-        </a>{" "}
+        </Link>{" "}
         for a degree in Computer Science.
       </p>
       <p className="leading-7">
