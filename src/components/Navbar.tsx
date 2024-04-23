@@ -56,12 +56,8 @@ const MenuItemLink = (props: {
 const Navbar = () => {
   return (
     <header className="flex p-6 z-10 items-center justify-between primary-text">
-      <Link
-        href="/"
-        passHref
-        className="bg-black bg-opacity-40 text-white px-1 py-0.5 font-mono"
-      >
-        /xxxbrian
+      <Link href="/" passHref className="border-b border-b-white">
+        xxxbrian
       </Link>
       <div className="flex space-x-4 items-center">
         <nav className="space-x-4 items-center hidden sm:flex">
@@ -73,13 +69,11 @@ const Navbar = () => {
         </nav>
 
         <div className="block sm:hidden">
-          <NavigationMenu className="rounded-lg">
+          <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="dark:bg-white dark:bg-opacity-10">
-                  Go to
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="flex flex-col rounded-lg">
+                <NavigationMenuTrigger />
+                <NavigationMenuContent className="flex flex-col">
                   {navigations.map((n, i) => (
                     <NavigationMenuLink
                       key={i}
