@@ -61,8 +61,8 @@ export default function RootLayout({
       <body className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          // enableSystem
           disableTransitionOnChange
         >
           {children}
