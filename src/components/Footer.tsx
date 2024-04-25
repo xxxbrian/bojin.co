@@ -31,7 +31,7 @@ const Footer = async () => {
           <Tooltip>
             <TooltipTrigger>
               {lv
-                ? `${lv.city !== "unknown" ? `${lv.city}, ` : ""}${
+                ? `${lv.city !== "unknown" ? `${lv.city}, ` : "Somewhere, "}${
                     lv.country
                   } ${lv.flag}`
                 : "Unknown"}
