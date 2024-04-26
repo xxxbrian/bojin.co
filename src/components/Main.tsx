@@ -1,7 +1,7 @@
-import { MailIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Identity from "./Identity";
+import AnimText from "./typing/AnimText";
 
 const Main = () => {
   return (
@@ -39,11 +39,10 @@ const Main = () => {
         decent aesthetic. Enjoy the thing with the pretty designed.
       </p>
 
-      <p className="mt-8 leading-7">A flunky of strongly-typed languages.</p>
-      <p className="flex space-x-2 items-center leading-7">
-        <MailIcon size={16} />
-        <a href="mailto:bojinxx@gmail.com">bojinxx#gmail.com</a>
-      </p>
+      {/* two lines height */}
+      <div className="mt-8 leading-7 h-14">
+        <AnimText delay={0} />
+      </div>
     </main>
   );
 };
