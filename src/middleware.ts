@@ -18,9 +18,7 @@ function getIP(request: Request | NextRequest): string {
 
 export async function middleware(request: NextRequest) {
   const { geo, nextUrl } = request;
-  console.log("geo", geo);
   const ip = getIP(request);
-  console.log("ip", ip);
   if (!geo) {
     return NextResponse.next();
   }
