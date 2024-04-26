@@ -40,7 +40,7 @@ export default function RootLayout({
           // enableSystem
           disableTransitionOnChange
         >
-          <main className="font-sans">{children}</main>
+          <main className="font-sans h-screen w-screen">{children}</main>
         </ThemeProvider>
       </body>
     </html>

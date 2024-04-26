@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Rss } from "lucide-react";
+import { BookHeart } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -19,8 +19,8 @@ const navigations = [
     target: "_self",
   },
   {
-    name: "Projects",
-    link: "/projects",
+    name: "Links",
+    link: "/links",
     target: "_self",
   },
   {
@@ -90,9 +90,9 @@ const Navbar = () => {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div onClick={() => window.open("/rss", "_self")}>
-          <Rss size={20} />
-        </div>
+        <Link href="https://github.com/xxxbrian/bojin.co/tree/new">
+          <BookHeart />
+        </Link>
       </div>
     </header>
   );
