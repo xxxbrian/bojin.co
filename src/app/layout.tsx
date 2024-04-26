@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Overpass, Old_Standard_TT, Overpass_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 // import { cn } from "@/lib/utils";
 
@@ -33,6 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_ANALYTICS_ID ?? ""} />
       <body className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
         <ThemeProvider
           attribute="class"
