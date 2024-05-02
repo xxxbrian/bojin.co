@@ -15,7 +15,7 @@ import {
 const Footer = async () => {
   const lv = await getLastVisitor();
   return (
-    <footer className="text-xs text-center px-6 py-2 primary-text">
+    <footer className="relative text-xs text-center px-6 py-2 primary-text">
       <div className="space-x-2 inline-flex items-center my-2">
         <SiVercel size={16} />
         <SiNextdotjs size={16} />
