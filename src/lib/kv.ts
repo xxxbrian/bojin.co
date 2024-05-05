@@ -1,8 +1,9 @@
 import { kv as vercelKV } from "@vercel/kv";
 import { kv as cloudflareKV } from "./cloudflare-kv";
+import { kv as upstashKV } from "./upstash-kv";
 import { unstable_noStore as noStore } from "next/cache";
 
-const kv = cloudflareKV;
+const kv = upstashKV;
 
 export type ipInfo = {
   ip: string;
