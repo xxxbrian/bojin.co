@@ -4,11 +4,12 @@ import { setCurrentVisitor } from "@/lib/kv";
 import countries from "@/lib/countries.json";
 
 function getIP(request: Request | NextRequest): string {
-  if ("ip" in request && request.ip) {
-    return request.ip;
-  }
+  // if ("ip" in request && request.ip) {
+  //   return request.ip;
+  // }
 
-  const xff = request.headers.get("x-forwarded-for");
+  const cfi = request.headers.get("cf-connecting-ip");
+  const xff = cfi ? cfi : request.headers.get("x-forwarded-for");
   if (xff === "::1") {
     return "127.0.0.1";
   }
