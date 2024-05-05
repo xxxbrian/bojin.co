@@ -1,6 +1,9 @@
 name = "kv-worker"
 compatibility_date = "2023-12-01"
 
+main = "src/index.ts"
+minify = true
+
 # [vars]
 # MY_VAR = "my-variable"
 
