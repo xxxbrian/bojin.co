@@ -8,7 +8,7 @@ export default function Home() {
     <TopologyWrap>
       <Navbar />
       <Main />
-      <Footer />
+      <Footer path="/" />
     </TopologyWrap>
   );
 }

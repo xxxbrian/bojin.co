@@ -15,7 +15,7 @@ const LinksPage: React.FC = () => {
           .
         </div>
       </div>
-      <Footer />
+      <Footer path="/links" />
     </div>
   );
 };

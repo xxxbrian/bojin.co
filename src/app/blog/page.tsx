@@ -15,7 +15,7 @@ const BlogPage: React.FC = () => {
           .
         </div>{" "}
       </div>
-      <Footer />
+      <Footer path="/blog" />
     </div>
   );
 };

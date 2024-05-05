@@ -10,18 +10,4 @@ if (!url || !token) {
   );
 }
 
-const redis = new Redis({ url, token });
-
-export class kv {
-  static async get<T>(key: string) {
-    return (await redis.get(key)) as T;
-  }
-
-  static async set<T>(key: string, value: any) {
-    return (await redis.set(key, value)) as T;
-  }
-
-  static async update<T>(key: string, value: any) {
-    return (await redis.set(key, value)) as T;
-  }
-}
+export const kv = new Redis({ url, token });
