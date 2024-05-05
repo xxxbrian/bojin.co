@@ -1,13 +1,17 @@
+import { unstable_noStore as noStore } from "next/cache";
+
 const endpoint = "kv-worker.bojin.workers.dev";
 export class kv {
   // GET /get
   static async get<T>(key: string) {
+    noStore();
     const res = await fetch(`https://${endpoint}/get?key=${key}`);
     return await res.json().then((data) => data.value as T);
   }
 
   // POST /set
   static async set<T>(key: string, value: any) {
+    noStore();
     const res = await fetch(`https://${endpoint}/set`, {
       method: "POST",
       headers: {
@@ -20,6 +24,7 @@ export class kv {
 
   // POST /update
   static async update<T>(key: string, value: any) {
+    noStore();
     const res = await fetch(`https://${endpoint}/update`, {
       method: "POST",
       headers: {
