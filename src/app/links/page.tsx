@@ -5,8 +5,15 @@ const LinksPage: React.FC = () => {
   return (
     <div className="flex flex-col h-full">
       <Navbar />
-      <div className="flex items-center justify-center h-full">
-        The links page is currently under construction.
+      <div className="flex flex-col items-center justify-center h-full">
+        <div>The links page is currently under construction.</div>
+        <div>
+          The old page can be found{" "}
+          <a href="https://main.bojin.co/links" className="border-b">
+            here
+          </a>
+          .
+        </div>
       </div>
       <Footer />
     </div>
