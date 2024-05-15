@@ -21,7 +21,12 @@ export async function middleware(request: NextRequest) {
   const { geo, nextUrl } = request;
   // get path basic part
   const path = nextUrl.pathname;
-  await incrVisitorCount(path);
+  try {
+    // increment visitor count
+    await incrVisitorCount(path);
+  } catch (error) {
+    console.log(error);
+  }
 
   const ip = getIP(request);
   if (!geo) {
@@ -32,7 +37,11 @@ export async function middleware(request: NextRequest) {
   const countryInfo = countries.find((x) => x.cca2 === country);
   if (countryInfo) {
     const flag = countryInfo.flag;
-    await setCurrentVisitor({ ip, country, city, flag });
+    try {
+      await setCurrentVisitor({ ip, country, city, flag });
+    } catch (error) {
+      console.log(error);
+    }
   }
   return NextResponse.next();
 }

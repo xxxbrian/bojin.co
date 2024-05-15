@@ -4,7 +4,7 @@ import {
   SiTailwindcss,
   SiVercel,
 } from "@icons-pack/react-simple-icons";
-import { getLastVisitor, getVisitorCount } from "@/lib/kv";
+import { getLastVisitor, getVisitorCount, ipInfo } from "@/lib/kv";
 import {
   Tooltip,
   TooltipContent,
@@ -28,9 +28,21 @@ interface FooterProp {
 }
 
 const Footer = async (prop: FooterProp) => {
-  const lv = await getLastVisitor();
-  const vc = await getVisitorCount(prop.path);
-  // const vc = 543950924820;
+  let lv: ipInfo | null = {
+    ip: "0.0.0.0",
+    city: "error",
+    country: "error",
+    flag: "🏳️‍🌈",
+  };
+  let vc = 0;
+  try {
+    lv = await getLastVisitor();
+    vc = await getVisitorCount(prop.path);
+  } catch (error) {
+    console.log(error);
+  }
+  // const lv = await getLastVisitor();
+  // const vc = await getVisitorCount(prop.path);
 
   return (
     <footer className="relative text-xs text-center px-6 py-2 primary-text">
