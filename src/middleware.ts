@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { incrVisitorCount, setCurrentVisitor } from "@/lib/kv";
+import { updateVisitorInfo } from "@/lib/kv";
 import countries from "@/lib/countries.json";
 
 function getIP(request: Request | NextRequest): string {
@@ -21,12 +21,6 @@ export async function middleware(request: NextRequest) {
   const { geo, nextUrl } = request;
   // get path basic part
   const path = nextUrl.pathname;
-  try {
-    // increment visitor count
-    await incrVisitorCount(path);
-  } catch (error) {
-    console.log(error);
-  }
 
   const ip = getIP(request);
   if (!geo) {
@@ -37,11 +31,9 @@ export async function middleware(request: NextRequest) {
   const countryInfo = countries.find((x) => x.cca2 === country);
   if (countryInfo) {
     const flag = countryInfo.flag;
-    try {
-      await setCurrentVisitor({ ip, country, city, flag });
-    } catch (error) {
-      console.log(error);
-    }
+    await updateVisitorInfo(path, { ip, country, city, flag });
+  } else {
+    await updateVisitorInfo(path);
   }
   return NextResponse.next();
 }

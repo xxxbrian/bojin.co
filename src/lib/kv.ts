@@ -12,40 +12,53 @@ export type ipInfo = {
   flag: string;
 };
 
-export const setLastVisitor = async (ipInfo: ipInfo) => {
-  await kv.set("last_visitor", ipInfo);
-};
+const vcKey = (path?: string) =>
+  path ? `visitor_count_${path}` : "visitor_count";
+export const updateVisitorInfo = async (
+  path: string,
+  currentVisitor?: ipInfo,
+) => {
+  try {
+    const pipeline = kv.multi();
 
-export const setCurrentVisitor = async (ipInfo: ipInfo) => {
-  const lv = await kv.get<ipInfo>("current_visitor");
-  await kv.set("current_visitor", ipInfo);
-  if (lv) {
-    await kv.set("last_visitor", lv);
+    if (currentVisitor) {
+      pipeline.lpush("visitor_queue", currentVisitor);
+      pipeline.ltrim("visitor_queue", 0, 150000);
+    }
+    pipeline.incr(vcKey(path));
+    await pipeline.exec();
+  } catch (error) {
+    console.log(error);
   }
 };
 
-export const incrVisitorCount = async (path?: string) => {
-  const key = path ? `visitor_count_${path}` : "visitor_count";
-  await kv.incr(key);
-};
-
-export const getLastVisitor = async () => {
+export const getVisitorInfoAndCount = async (path?: string) => {
   noStore();
-  return await kv.get<ipInfo>("last_visitor");
-};
+  try {
+    const pipeline = kv.multi();
 
-export const getCurrentVisitor = async () => {
-  noStore();
-  return await kv.get<ipInfo>("current_visitor");
-};
+    pipeline.lrange("visitor_queue", 0, 1);
+    pipeline.get(vcKey(path));
 
-export const getVisitorCount = async (path?: string) => {
-  noStore();
-  const key = path ? `visitor_count_${path}` : "visitor_count";
-  const vc = await kv.get<number>(key);
-  if (!vc) {
-    await kv.set("visitor_count", 0);
-    return 0;
+    const results = await pipeline.exec();
+
+    const [visitorQueue, visitorCount] = results as [Array<ipInfo>, number];
+    console.log(visitorQueue, visitorCount);
+    return {
+      lastVisitors: visitorQueue[1],
+      visitorCount: visitorCount,
+    };
+  } catch (error) {
+    console.log(error);
+    const errorIpInfo = {
+      ip: error as string,
+      city: "error",
+      country: "error",
+      flag: "🏳️‍🌈",
+    };
+    return {
+      lastVisitors: errorIpInfo,
+      visitorCount: 0,
+    };
   }
-  return vc;
 };
