@@ -31,7 +31,7 @@ export async function middleware(request: NextRequest) {
   const countryInfo = countries.find((x) => x.cca2 === country);
   if (countryInfo) {
     const flag = countryInfo.flag;
-    await updateVisitorInfo(path, { ip, country, city, flag });
+    await updateVisitorInfo(path, { ip, country, city, flag, refPath: path });
   } else {
     await updateVisitorInfo(path);
   }

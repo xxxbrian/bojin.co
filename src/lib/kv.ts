@@ -10,6 +10,7 @@ export type ipInfo = {
   country: string;
   city: string;
   flag: string;
+  refPath?: string;
 };
 
 const vcKey = (path?: string) =>
@@ -51,10 +52,11 @@ export const getVisitorInfoAndCount = async (path?: string) => {
   } catch (error) {
     console.log(error);
     const errorIpInfo = {
-      ip: error as string,
+      ip: (error as string).slice(0, 30),
       city: "error",
       country: "error",
       flag: "🏳️‍🌈",
+      refPath: error as string,
     };
     return {
       lastVisitors: errorIpInfo,
