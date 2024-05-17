@@ -50,13 +50,14 @@ export const getVisitorInfoAndCount = async (path?: string) => {
       visitorCount: visitorCount,
     };
   } catch (error) {
-    console.log(error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error(errorMessage);
     const errorIpInfo = {
-      ip: (error as string).slice(0, 30),
+      ip: errorMessage.slice(0, 40),
       city: "error",
       country: "error",
       flag: "🏳️‍🌈",
-      refPath: error as string,
+      refPath: "error",
     };
     return {
       lastVisitors: errorIpInfo,
