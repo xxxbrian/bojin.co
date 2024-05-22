@@ -100,7 +100,7 @@ export async function middleware(request: NextRequest) {
     refPath: path,
   };
 
-  updateVisitorInfo(path, ipInfo);
+  await updateVisitorInfo(path, ipInfo);
 
   return NextResponse.next();
 }
