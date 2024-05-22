@@ -29,6 +29,7 @@ export const updateVisitorInfo = async (
   path: string,
   currentVisitor?: IpInfo,
 ) => {
+  noStore();
   try {
     const pipeline = kv.multi();
 
@@ -37,9 +38,10 @@ export const updateVisitorInfo = async (
       pipeline.ltrim("visitor_queue", 0, 150000);
     }
     pipeline.incr(vcKey(path));
-    await pipeline.exec();
+    const results = await pipeline.exec();
+    console.log("updateVisitorInfo", results);
   } catch (error) {
-    console.log(error);
+    console.error("updateVisitorInfo", error);
   }
 };
 
@@ -54,14 +56,14 @@ export const getVisitorInfoAndCount = async (path?: string) => {
     const results = await pipeline.exec();
 
     const [visitorQueue, visitorCount] = results as [Array<IpInfo>, number];
-    console.log(visitorQueue, visitorCount);
+    console.log("getVisitorInfoAndCount", visitorQueue, visitorCount);
     return {
       lastVisitors: visitorQueue[1],
       visitorCount: visitorCount,
     };
   } catch (error) {
+    console.error("getVisitorInfoAndCount", error);
     const errorMessage = error instanceof Error ? error.message : String(error);
-    console.error(errorMessage);
     const errorIpInfo = {
       ip: errorMessage.slice(0, 40),
       city: "error",
