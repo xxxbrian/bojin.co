@@ -4,7 +4,7 @@ import {
   SiTailwindcss,
   SiVercel,
 } from "@icons-pack/react-simple-icons";
-import { getVisitorInfoAndCount, ipInfo } from "@/lib/kv";
+import { getVisitorInfoAndCount } from "@/lib/kv";
 import {
   Tooltip,
   TooltipContent,
@@ -55,14 +55,10 @@ const Footer = async (prop: FooterProp) => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
-                {lv
-                  ? `${lv.city !== "unknown" ? `${lv.city}, ` : "Somewhere, "}${
-                      lv.country
-                    } ${lv.flag}`
-                  : "Unknown"}
+                <span>{`${lv.city}, ${lv.country} ${lv.flag}`}</span>
               </TooltipTrigger>
               <TooltipContent className="pb-1">
-                <span>IP: {lv ? `${lv.ip}` : "Unknown"}</span>
+                <span>IP: {lv.ip}</span>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>

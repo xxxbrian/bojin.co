@@ -3,21 +3,31 @@ import { kv as cloudflareKV } from "./cloudflare-kv";
 import { kv as upstashKV } from "./upstash-kv";
 import { unstable_noStore as noStore } from "next/cache";
 
-const kv = upstashKV;
+// const kv = upstashKV;
+const kv = vercelKV;
 
-export type ipInfo = {
+export type IpInfo = {
   ip: string;
-  country: string;
   city: string;
+  country: string;
+  continent?: string;
+  longitude?: number;
+  latitude?: number;
+  region?: string;
+  regionCode?: string;
+  metroCode?: string;
+  postalCode?: string;
+  timezone?: string;
   flag: string;
   refPath?: string;
 };
 
 const vcKey = (path?: string) =>
   path ? `visitor_count_${path}` : "visitor_count";
+
 export const updateVisitorInfo = async (
   path: string,
-  currentVisitor?: ipInfo,
+  currentVisitor?: IpInfo,
 ) => {
   try {
     const pipeline = kv.multi();
@@ -43,7 +53,7 @@ export const getVisitorInfoAndCount = async (path?: string) => {
 
     const results = await pipeline.exec();
 
-    const [visitorQueue, visitorCount] = results as [Array<ipInfo>, number];
+    const [visitorQueue, visitorCount] = results as [Array<IpInfo>, number];
     console.log(visitorQueue, visitorCount);
     return {
       lastVisitors: visitorQueue[1],
@@ -58,7 +68,7 @@ export const getVisitorInfoAndCount = async (path?: string) => {
       country: "error",
       flag: "🏳️‍🌈",
       refPath: "error",
-    };
+    } as IpInfo;
     return {
       lastVisitors: errorIpInfo,
       visitorCount: 0,
