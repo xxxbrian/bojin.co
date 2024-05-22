@@ -3,8 +3,7 @@ import { kv as cloudflareKV } from "./cloudflare-kv";
 import { kv as upstashKV } from "./upstash-kv";
 import { unstable_noStore as noStore } from "next/cache";
 
-// const kv = upstashKV;
-const kv = vercelKV;
+const kv = upstashKV;
 
 export type IpInfo = {
   ip: string;
