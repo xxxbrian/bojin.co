@@ -3,6 +3,8 @@ import { Overpass, Old_Standard_TT, Overpass_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 // import { cn } from "@/lib/utils";
 
@@ -44,6 +46,8 @@ export default function RootLayout({
         >
           <main className="font-sans h-screen w-screen">{children}</main>
         </ThemeProvider>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
