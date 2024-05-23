@@ -67,6 +67,10 @@ function getCfGeo(request: Request | NextRequest): CfGeo {
 }
 
 export async function middleware(request: NextRequest) {
+  // not vercel production, skip
+  if (process.env.VERCEL_ENV !== "production") {
+    return NextResponse.next();
+  }
   const { geo, nextUrl } = request;
   // get path basic part
   const path = nextUrl.pathname;
