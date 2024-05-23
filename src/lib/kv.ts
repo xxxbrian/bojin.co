@@ -28,7 +28,7 @@ export const updateVisitorInfo = async (
   path: string,
   currentVisitor?: IpInfo,
 ) => {
-  noStore();
+  // noStore();
   try {
     const pipeline = kv.multi();
 
@@ -45,7 +45,20 @@ export const updateVisitorInfo = async (
 };
 
 export const getVisitorInfoAndCount = async (path?: string) => {
-  noStore();
+  // noStore();
+  if (process.env.VERCEL_ENV !== "production") {
+    const devInfo = {
+      ip: process.env.VERCEL_ENV,
+      city: "dev",
+      country: "dev",
+      flag: "🏳️‍🌈",
+      refPath: "dev",
+    } as IpInfo;
+    return {
+      lastVisitors: devInfo,
+      visitorCount: 555555,
+    };
+  }
   try {
     const pipeline = kv.multi();
 
