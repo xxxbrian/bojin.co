@@ -48,7 +48,17 @@ const Footer = async (prop: FooterProp) => {
       </div>
       <div className="md:absolute md:bottom-0 md:right-6 md:p-2 md:text-xs md:text-right md:w-full">
         <div className="hidden md:block">
-          Total visitors: {formatNumberWithText(vc)}
+          Total visitors:{" "}
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <span>{formatNumberWithText(vc)}</span>
+              </TooltipTrigger>
+              <TooltipContent className="pb-1">
+                <span>{vc} visitors</span>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
         <div>
           Last visitor from:{" "}
