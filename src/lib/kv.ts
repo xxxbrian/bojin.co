@@ -34,9 +34,9 @@ export const updateVisitorInfo = async (
 
     if (currentVisitor) {
       pipeline.lpush("visitor_queue", currentVisitor);
-      pipeline.ltrim("visitor_queue", 0, 150000);
+      // pipeline.ltrim("visitor_queue", 0, 150000);
     }
-    pipeline.incr(vcKey(path));
+    // pipeline.incr(vcKey(path));
     const results = await pipeline.exec();
     console.log("updateVisitorInfo", results);
   } catch (error) {
@@ -50,7 +50,8 @@ export const getVisitorInfoAndCount = async (path?: string) => {
     const pipeline = kv.multi();
 
     pipeline.lrange("visitor_queue", 0, 1);
-    pipeline.get(vcKey(path));
+    // pipeline.get(vcKey(path));
+    pipeline.incr(vcKey(path));
 
     const results = await pipeline.exec();
 
