@@ -19,6 +19,7 @@ export type IpInfo = {
   timezone?: string;
   flag: string;
   refPath?: string;
+  cfRay?: string;
 };
 
 const vcKey = (path?: string) =>

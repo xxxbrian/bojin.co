@@ -24,6 +24,7 @@ type CfGeo = {
   metroCode?: string;
   postalCode?: string;
   timezone?: string;
+  ray?: string;
 };
 
 function getCfGeo(request: Request | NextRequest): CfGeo {
@@ -49,6 +50,7 @@ function getCfGeo(request: Request | NextRequest): CfGeo {
   const cfMetroCode = request.headers.get("cf-metro-code");
   const cfPostalCode = request.headers.get("cf-postal-code");
   const cfTimezone = request.headers.get("cf-timezone");
+  const cfRay = request.headers.get("cf-ray");
 
   const cfGeo: CfGeo = {};
   if (cfIp) cfGeo.ip = cfIp;
@@ -62,6 +64,7 @@ function getCfGeo(request: Request | NextRequest): CfGeo {
   if (cfMetroCode) cfGeo.metroCode = cfMetroCode;
   if (cfPostalCode) cfGeo.postalCode = cfPostalCode;
   if (cfTimezone) cfGeo.timezone = cfTimezone;
+  if (cfRay) cfGeo.ray = cfRay;
 
   return cfGeo;
 }
@@ -102,6 +105,7 @@ export async function middleware(request: NextRequest) {
     timezone: cfGeo.timezone,
     flag,
     refPath: path,
+    cfRay: cfGeo.ray,
   };
 
   await updateVisitorInfo(path, ipInfo);
