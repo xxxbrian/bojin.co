@@ -23,7 +23,7 @@ const Main = () => {
       </div>
 
       <p className="leading-7">
-        Currently studying in{" "}
+        Recently graduated from{" "}
         <Link
           href="https://unsw.edu.au"
           target="_blank"
@@ -32,7 +32,17 @@ const Main = () => {
         >
           University of New South Wales
         </Link>{" "}
-        for a degree in Computer Science.
+        with a Bachelor’s degree in Computer Science, and now pursuing a
+        Master’s degree at{" "}
+        <Link
+          href="https://unimelb.edu.au"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="border-b border-b-white"
+        >
+          University of Melbourne
+        </Link>
+        .
       </p>
       <p className="leading-7">
         Appearance complex. Loyal fans of apple products. Prefer someone with a
