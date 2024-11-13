@@ -1,7 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import Identity from "./Identity";
 import AnimText from "./typing/AnimText";
+
+import RichLink from "./ui/rich-link";
 
 const Main = () => {
   return (
@@ -22,32 +23,30 @@ const Main = () => {
         <Identity />
       </div>
 
-      <p className="leading-7">
+      <span className="leading-7">
         Recently graduated from{" "}
-        <Link
-          href="https://unsw.edu.au"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="border-b border-b-white"
+        <RichLink
+          url="https://www.unsw.edu.au"
+          image="/images/unsw-logo-yellow.png"
+          imageAlt="unsw-logo"
         >
           University of New South Wales
-        </Link>{" "}
+        </RichLink>{" "}
         with a Bachelor’s degree in Computer Science, and now pursuing a
         Master’s degree at{" "}
-        <Link
-          href="https://unimelb.edu.au"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="border-b border-b-white"
+        <RichLink
+          url="https://unimelb.edu.au"
+          image="/images/um-logo-blue.png"
+          imageAlt="unsw-logo"
         >
           University of Melbourne
-        </Link>
+        </RichLink>
         .
-      </p>
-      <p className="leading-7">
+      </span>
+      <span className="leading-7">
         Appearance complex. Loyal fans of apple products. Prefer someone with a
         decent aesthetic. Enjoy the thing with the pretty designed.
-      </p>
+      </span>
 
       {/* two lines height */}
       <div className="mt-8 leading-7 h-14">
