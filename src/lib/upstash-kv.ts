@@ -1,8 +1,7 @@
 import { Redis } from "@upstash/redis";
-import { env } from "process";
 
-const url = env.UPSTASH_REDIS_REST_URL;
-const token = env.UPSTASH_REDIS_REST_TOKEN;
+const url = process.env.UPSTASH_REDIS_REST_URL;
+const token = process.env.UPSTASH_REDIS_REST_TOKEN;
 
 if (!url || !token) {
   throw new Error(

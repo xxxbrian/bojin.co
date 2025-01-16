@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { geolocation } from "@vercel/functions";
 import type { NextRequest } from "next/server";
 import { IpInfo, updateVisitorInfo } from "@/lib/kv";
 import countries from "@/lib/countries.json";
@@ -74,7 +75,8 @@ export async function middleware(request: NextRequest) {
   if (process.env.VERCEL_ENV !== "production") {
     return NextResponse.next();
   }
-  const { geo, nextUrl } = request;
+  const { nextUrl } = request;
+  const geo = geolocation(request);
   // get path basic part
   const path = nextUrl.pathname;
 
