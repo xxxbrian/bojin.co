@@ -43,10 +43,15 @@ const Footer = async (prop: FooterProp) => {
         <SiTailwindcss size={16} />
         <SiBun size={16} />
       </div>
-      <div>
-        Built with love by Bojin Li ©️ 2019 - {new Date().getFullYear()}
+      <div className="group">
+        <span className="block group-hover:hidden">
+          Built with love by Bojin Li ©️ 2019 - {new Date().getFullYear()}
+        </span>
+        <span className="hidden group-hover:block">
+          {process.env.VERCEL_GIT_COMMIT_SHA || "UNKNOWN"}
+        </span>
       </div>
-      <div className="md:absolute md:bottom-0 md:right-6 md:p-2 md:text-xs md:text-right md:w-full">
+      <div className="md:absolute md:bottom-0 md:right-6 md:p-2 md:text-xs md:text-right md:w-full -z-10">
         <div className="hidden md:block">
           Total visitors:{" "}
           <TooltipProvider>
