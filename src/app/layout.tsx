@@ -41,7 +41,7 @@ export default function RootLayout({
       <body className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
         <PlausibleProvider
           domain="bojin.co"
-          customDomain="https://analytics.nszero.org"
+          customDomain="https://zprobe.nszero.org"
           trackOutboundLinks={true}
           trackFileDownloads={true}
           selfHosted={true}
