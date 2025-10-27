@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import { PlausibleAnalytics } from "@/components/plausible-analytics";
 
 // import { cn } from "@/lib/utils";
 
@@ -48,6 +49,7 @@ export default function RootLayout({
         </ThemeProvider>
         <SpeedInsights />
         <Analytics />
+        <PlausibleAnalytics />
       </body>
     </html>
   );
