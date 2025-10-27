@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import PlausibleProvider from "next-plausible";
 
 // import { cn } from "@/lib/utils";
 
@@ -38,14 +39,22 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_ANALYTICS_ID ?? ""} />
       <body className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          // enableSystem
-          disableTransitionOnChange
+        <PlausibleProvider
+          domain="bojin.co"
+          customDomain="https://analytics.nszero.org"
+          trackOutboundLinks={true}
+          trackFileDownloads={true}
+          selfHosted={true}
         >
-          <main className="font-sans h-screen w-screen">{children}</main>
-        </ThemeProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            // enableSystem
+            disableTransitionOnChange
+          >
+            <main className="font-sans h-screen w-screen">{children}</main>
+          </ThemeProvider>
+        </PlausibleProvider>
         <SpeedInsights />
         <Analytics />
       </body>
