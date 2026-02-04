@@ -1,16 +1,7 @@
 "use client";
 import Link from "next/link";
-import { BookHeart } from "lucide-react";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+import { BookHeart, Menu } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const navigations = [
   {
@@ -21,6 +12,11 @@ const navigations = [
   {
     name: "Links",
     link: "/links",
+    target: "_self",
+  },
+  {
+    name: "Use",
+    link: "/use",
     target: "_self",
   },
   {
@@ -54,8 +50,23 @@ const MenuItemLink = (props: {
 };
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleClick = (event: MouseEvent) => {
+      if (!menuRef.current) return;
+      if (!menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, [menuOpen]);
+
   return (
-    <header className="flex p-6 z-10 items-center justify-between primary-text">
+    <header className="relative flex p-6 z-10 items-center justify-between primary-text">
       <Link href="/" passHref className="border-b border-b-white">
         xxxbrian
       </Link>
@@ -68,27 +79,31 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="block sm:hidden">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger />
-                <NavigationMenuContent className="flex flex-col">
-                  {navigations.map((n, i) => (
-                    <NavigationMenuLink
-                      key={i}
-                      href={n.link}
-                      className={`hover:font-bold mb-3 px-3 ${
-                        i === 0 ? "mt-3" : ""
-                      }`}
-                    >
-                      {n.name}
-                    </NavigationMenuLink>
-                  ))}
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+        <div className="relative block sm:hidden" ref={menuRef}>
+          <button
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/60 hover:text-white"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label="Open menu"
+            aria-expanded={menuOpen}
+          >
+            <Menu size={18} />
+          </button>
+          {menuOpen ? (
+            <div className="absolute right-0 mt-3 w-48 rounded-2xl border border-white/10 bg-black/70 p-3 text-sm text-white/80 shadow-2xl backdrop-blur">
+              {navigations.map((n, i) => (
+                <Link
+                  href={n.link}
+                  target={n.target}
+                  key={i}
+                  className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs uppercase tracking-[0.2em] text-white/70 transition hover:bg-white/10 hover:text-white"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {n.name}
+                  <span className="text-white/40">↗</span>
+                </Link>
+              ))}
+            </div>
+          ) : null}
         </div>
         <Link href="https://github.com/xxxbrian/bojin.co/tree/new">
           <BookHeart />

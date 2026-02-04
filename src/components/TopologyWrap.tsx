@@ -35,7 +35,7 @@ const TopologyWrap = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div
-      className="flex flex-col dark h-full w-full bg-[#001522]"
+      className="relative flex min-h-screen w-full flex-col dark bg-[#001522]"
       ref={vantaRef}
     >
       {children}

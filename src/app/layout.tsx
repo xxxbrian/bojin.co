@@ -52,7 +52,7 @@ export default function RootLayout({
             // enableSystem
             disableTransitionOnChange
           >
-            <main className="font-sans h-screen w-screen">{children}</main>
+            <main className="font-sans min-h-screen w-full">{children}</main>
           </ThemeProvider>
         </PlausibleProvider>
         <SpeedInsights />
